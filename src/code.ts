@@ -1,9 +1,6 @@
 figma.showUI(__html__)
-console.log("code loaded");
+
 figma.ui.onmessage = msg => {
-  if (msg.type === 'generic') {
-    console.log(msg);
-  }
   if (msg.type === 'create-rectangles') {
     const nodes = []
 

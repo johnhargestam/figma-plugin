@@ -1,8 +1,3 @@
-var div = document.createElement('div');
-div.appendChild(document.createTextNode("dwd"));
-document.body.appendChild(div);
-
-parent.postMessage({ pluginMessage: { type: 'generic', s: "hello" } }, '*')
 document.getElementById('create').onclick = () => {
   const textbox = document.getElementById('count') as HTMLInputElement
   const count = parseInt(textbox.value, 10)
