@@ -1,0 +1,50 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-typescript/base",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "error",
+    "@typescript-eslint/explicit-member-accessibility": "error",
+    "@typescript-eslint/no-confusing-non-null-assertion": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/prefer-readonly": "error",
+    "@typescript-eslint/prefer-readonly-parameter-types": "error",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/typedef": [
+      "error",
+      {
+        "arrayDestructuring": true,
+        "arrowParameter": true,
+        "memberVariableDeclaration": true,
+        "objectDestructuring": true,
+        "parameter": true,
+        "propertyDeclaration": true,
+        "variableDeclaration": true,
+        "variableDeclarationIgnoreFunction": true
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/typedef": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
+}

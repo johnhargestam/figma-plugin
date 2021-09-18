@@ -1,7 +1,7 @@
-export function getElementById<T extends HTMLElement>(id: string, type: {new (): T}): T {
-  const e = <T>document.getElementById(id)
-  if (!(e instanceof type)) {
-    throw `expected to find HTMLInputElement with id ${id}`;
+export default function getElementById<T extends HTMLElement>(id: string): T {
+  const element: HTMLElement | null = document.getElementById(id);
+  if (element === null) {
+    throw new Error(`expected to find element with id ${id}`);
   }
-  return e;
+  return element as T;
 }

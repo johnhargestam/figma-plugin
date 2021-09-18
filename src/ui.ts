@@ -1,11 +1,13 @@
-import { getElementById } from "./document/elements"
+import getElementById from './document/elements';
 
-getElementById('create', HTMLButtonElement).onclick = () => {
-  const textbox = getElementById('count', HTMLInputElement);
-  const count = parseInt(textbox.value, 10)
-  parent.postMessage({ pluginMessage: { type: 'create-rectangles', count } }, '*')
-}
+declare const parent: WindowProxy;
 
-getElementById('cancel', HTMLButtonElement).onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
-}
+getElementById('create').onclick = (): void => {
+  const textbox: HTMLInputElement = getElementById('count');
+  const count: number = parseInt(textbox.value, 10);
+  parent.postMessage({ pluginMessage: { type: 'create-rectangles', count } }, '*');
+};
+
+getElementById('cancel').onclick = (): void => {
+  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*');
+};
