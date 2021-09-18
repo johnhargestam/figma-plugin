@@ -2,9 +2,9 @@
   "name": "bridge",
   "id": "1020990683297496354",
   "api": "1.0.0",
-  "main": "code.js",
   "editorType": [
     "figma"
   ],
-  "ui": "ui.html"
+  "main": "dist/code.js",
+  "ui": "dist/ui.html"
 }
