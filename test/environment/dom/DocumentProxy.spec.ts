@@ -1,14 +1,15 @@
 import DocumentProxy from '@src/environment/dom/DocumentProxy';
-import { any, mock, mockReset } from 'jest-mock-extended';
+import { any, mock } from 'jest-mock-extended';
 
 describe('DocumentProxy', () => {
-  const documentMock = mock<Document>();
-  const documentProxy = new DocumentProxy(documentMock);
+  let documentMock = mock<Document>();
+  let documentProxy = new DocumentProxy(documentMock);
 
-  afterEach(() => {
-    mockReset(documentMock);
+  beforeEach(() => {
+    documentMock = mock<Document>();
+    documentProxy = new DocumentProxy(documentMock);
   });
-
+  
   it('returns element if found', () => {
     const elementMock = mock<HTMLElement>();
     documentMock.getElementById

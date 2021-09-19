@@ -1,15 +1,16 @@
-import { MessageBrokerFactory } from '@src/environment/messaging/brokers';
+import { MessageBroker, MessageBrokerFactory } from '@src/environment/messaging/brokers';
 import { Message } from '@src/environment/messaging/messages';
-import { mock, mockReset } from 'jest-mock-extended';
+import { mock } from 'jest-mock-extended';
 
 describe('UIMessageBroker', () => {
-  const windowMock = mock<Window>();
-  const parentMock = mock<WindowProxy>();
-  const messageBroker = MessageBrokerFactory.createForUI(windowMock, parentMock);
+  let windowMock: Window;
+  let parentMock: WindowProxy;
+  let messageBroker: MessageBroker;
 
-  afterEach(() => {
-    mockReset(windowMock);
-    mockReset(parentMock);
+  beforeEach(() => {
+    windowMock = mock<Window>();
+    parentMock = mock<WindowProxy>();
+    messageBroker = MessageBrokerFactory.createForUI(windowMock, parentMock);
   });
 
   it('recieves messages from plugin', () => {
@@ -33,11 +34,12 @@ describe('UIMessageBroker', () => {
 });
 
 describe('PluginMessageBroker', () => {
-  const uiApiMock = mock<UIAPI>();
-  const messageBroker = MessageBrokerFactory.createForPlugin(uiApiMock);
+  let uiApiMock: UIAPI;
+  let messageBroker: MessageBroker;
 
-  afterEach(() => {
-    mockReset(uiApiMock);
+  beforeEach(() => {
+    uiApiMock = mock<UIAPI>();
+    messageBroker = MessageBrokerFactory.createForPlugin(uiApiMock);
   });
 
   it('recieves messages from ui', () => {
