@@ -7,45 +7,54 @@
   "plugins": [
     "@typescript-eslint"
   ],
-  "extends": [ /* TODO: reduce extended */
+  "extends": [
     "eslint:recommended",
-    "airbnb-base",
     "plugin:@typescript-eslint/recommended",
-    "airbnb-typescript/base",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:jest/recommended"
   ],
-  "rules": {
-    "@typescript-eslint/explicit-function-return-type": "error",
-    "@typescript-eslint/explicit-member-accessibility": "error",
-    "@typescript-eslint/no-confusing-non-null-assertion": "error",
-    "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/prefer-readonly": "error",
-    "@typescript-eslint/typedef": [
-      "error", /* TODO: necessary? */
-      {
-        "arrayDestructuring": false,
-        "arrowParameter": true,
-        "memberVariableDeclaration": true,
-        "objectDestructuring": false,
-        "parameter": true,
-        "propertyDeclaration": true,
-        "variableDeclaration": false,
-        "variableDeclarationIgnoreFunction": true
-      }
-    ],
-    "@typescript-eslint/no-inferrable-types": "off",
-    "class-methods-use-this": "off",
-    "import/prefer-default-export": "off",
-    "max-classes-per-file": "off"
-  },
   "overrides": [
+    {
+      "files": ["*.ts"],
+      "excludedFiles": "*.spec.ts",
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "error",
+        "@typescript-eslint/explicit-member-accessibility": "error",
+        "@typescript-eslint/no-confusing-non-null-assertion": "error",
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/prefer-readonly": "error",
+        "@typescript-eslint/typedef": [
+          "error",
+          {
+            "arrayDestructuring": false,
+            "arrowParameter": true,
+            "memberVariableDeclaration": true,
+            "objectDestructuring": false,
+            "parameter": true,
+            "propertyDeclaration": true,
+            "variableDeclaration": false,
+            "variableDeclarationIgnoreFunction": true
+          }
+        ],
+        "@typescript-eslint/no-inferrable-types": "off",
+        "class-methods-use-this": "off",
+        "import/prefer-default-export": "off",
+        "max-classes-per-file": "off"
+      }
+    },
     {
       "files": ["*.js"],
       "rules": {
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/typedef": "off",
         "@typescript-eslint/no-unsafe-member-access": "off",
-        "@typescript-eslint/no-var-requires": "off"
+        "@typescript-eslint/no-var-requires": "off",
+        "no-undef": "off"
+      }
+    },
+    {
+      "files": ["*.spec.ts"],
+      "rules": {
+        "@typescript-eslint/unbound-method": "off",
+        "@typescript-eslint/no-non-null-assertion": "off"
       }
     }
   ]

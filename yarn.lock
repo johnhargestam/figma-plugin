@@ -723,7 +723,7 @@
     semver "^7.3.5"
     tsutils "^3.21.0"
 
-"@typescript-eslint/experimental-utils@4.31.1":
+"@typescript-eslint/experimental-utils@4.31.1", "@typescript-eslint/experimental-utils@^4.0.1":
   version "4.31.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-4.31.1.tgz#0c900f832f270b88e13e51753647b02d08371ce5"
   integrity sha512-NtoPsqmcSsWty0mcL5nTZXMf7Ei0Xr2MT8jWjXMVgRK0/1qeQ2jZzLFUh4QtyJ4+/lPUyMw5cSfeeME+Zrtp9Q==
@@ -1810,6 +1810,13 @@ eslint-plugin-import@^2.24.2:
     resolve "^1.20.0"
     tsconfig-paths "^3.11.0"
 
+eslint-plugin-jest@^24.4.2:
+  version "24.4.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.4.2.tgz#9e8cf05ee6a0e3025e6149df2f36950abfa8d5bf"
+  integrity sha512-jNMnqwX75z0RXRMXkxwb/+9ylKJYJLJ8nT8nBT0XFM5qx4IQGxP4edMawa0qGkSbHae0BDPBmi8I2QF0/F04XQ==
+  dependencies:
+    "@typescript-eslint/experimental-utils" "^4.0.1"
+
 eslint-scope@5.1.1, eslint-scope@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-5.1.1.tgz#e786e59a66cb92b3f6c1fb0d508aab174848f48c"
@@ -2735,6 +2742,13 @@ jest-message-util@^27.2.0:
     pretty-format "^27.2.0"
     slash "^3.0.0"
     stack-utils "^2.0.3"
+
+jest-mock-extended@^2.0.2-beta2:
+  version "2.0.2-beta2"
+  resolved "https://registry.yarnpkg.com/jest-mock-extended/-/jest-mock-extended-2.0.2-beta2.tgz#36a7e43c27df93aa30d1424f5360c4ae301d69b8"
+  integrity sha512-56zcpgRPs3YxQP0ejcaaNFxUinPyRxQCbuk7GGORZqEbAFuQVXWAAtru2tI1N4qcLBoDWEJ/hwUxwbEGY5hdyw==
+  dependencies:
+    ts-essentials "^7.0.3"
 
 jest-mock@^27.1.1:
   version "27.1.1"
@@ -4291,6 +4305,11 @@ tr46@^2.1.0:
   integrity sha512-15Ih7phfcdP5YxqiB+iDtLoaTz4Nd35+IiAv0kQ5FNKHzXgdWqPoTIqEDDJmXceQt4JZk6lVPT8lnDlPpGDppw==
   dependencies:
     punycode "^2.1.1"
+
+ts-essentials@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-7.0.3.tgz#686fd155a02133eedcc5362dc8b5056cde3e5a38"
+  integrity sha512-8+gr5+lqO3G84KdiTSMRLtuyJ+nTBVRKuCrK4lidMPdVeEp0uqC875uE5NMcaA7YYMN7XsNiFQuMvasF8HT/xQ==
 
 ts-jest@^27.0.5:
   version "27.0.5"
