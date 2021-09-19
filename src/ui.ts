@@ -1,18 +1,11 @@
 import './ui.css';
-import { getElementById } from './environment/document/elements';
-import { MessageBroker, MessageBrokerFactory } from './environment/messaging/brokers';
-import { Message } from './environment/messaging/messages';
+import { MessageBrokerFactory } from './environment/messaging/brokers';
+import UserInterface from './ui/UserInterface';
+import DocumentProxy from './environment/dom/DocumentProxy';
 
-const messageBroker: MessageBroker = MessageBrokerFactory.createForUI();
+declare const parent: WindowProxy;
 
-getElementById('create').onclick = (): void => {
-  messageBroker.sendMessage({ contents: 'create' });
-};
-
-getElementById('cancel').onclick = (): void => {
-  messageBroker.sendMessage({ contents: 'cancel' });
-};
-
-messageBroker.onMessage((msg: Message): void => {
-  console.log(msg);
-});
+const documentProxy = new DocumentProxy(document);
+const messageBroker = MessageBrokerFactory.createForUI(window, parent);
+const ui = new UserInterface(documentProxy, messageBroker);
+ui.initialize();

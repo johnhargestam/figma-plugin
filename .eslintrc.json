@@ -21,15 +21,15 @@
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/prefer-readonly": "error",
     "@typescript-eslint/typedef": [
-      "error",
+      "error", /* TODO: necessary? */
       {
-        "arrayDestructuring": true,
+        "arrayDestructuring": false,
         "arrowParameter": true,
         "memberVariableDeclaration": true,
-        "objectDestructuring": true,
+        "objectDestructuring": false,
         "parameter": true,
         "propertyDeclaration": true,
-        "variableDeclaration": true,
+        "variableDeclaration": false,
         "variableDeclarationIgnoreFunction": true
       }
     ],

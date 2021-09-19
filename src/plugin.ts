@@ -1,10 +1,8 @@
-import { MessageBroker, MessageBrokerFactory } from './environment/messaging/brokers';
-import { Message } from './environment/messaging/messages';
+import { MessageBrokerFactory } from './environment/messaging/brokers';
+import Plugin from './plugin/Plugin';
 
 figma.showUI(__html__);
 
-const messageBroker: MessageBroker = MessageBrokerFactory.createForPlugin();
-
-messageBroker.onMessage((msg: Message): void => {
-  messageBroker.sendMessage({ contents: `${msg.contents}back` });
-});
+const messageBroker = MessageBrokerFactory.createForPlugin(figma);
+const plugin = new Plugin(messageBroker);
+plugin.initialize();
