@@ -1,13 +1,17 @@
-import getElementById from './document/elements';
+import { getElementById } from './environment/document/elements';
+import { MessageBroker, MessageBrokerFactory } from './environment/messaging/brokers';
+import { Message } from './environment/messaging/messages';
 
-declare const parent: WindowProxy;
+const messageBroker: MessageBroker = MessageBrokerFactory.createForUI();
 
 getElementById('create').onclick = (): void => {
-  const textbox: HTMLInputElement = getElementById('count');
-  const count: number = parseInt(textbox.value, 10);
-  parent.postMessage({ pluginMessage: { type: 'create-rectangles', count } }, '*');
+  messageBroker.sendMessage({ contents: 'create' });
 };
 
 getElementById('cancel').onclick = (): void => {
-  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*');
+  messageBroker.sendMessage({ contents: 'cancel' });
 };
+
+messageBroker.onMessage((msg: Message): void => {
+  console.log(msg);
+});

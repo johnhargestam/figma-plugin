@@ -5,7 +5,7 @@ module.exports = (env, argv) => ({
   devtool: argv.mode === 'development' ? 'inline-source-map' : false,
   entry: {
     ui: './src/ui.ts',
-    code: './src/code.ts',
+    plugin: './src/plugin.ts',
   },
   module: {
     rules: [
