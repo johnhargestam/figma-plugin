@@ -4,17 +4,18 @@ module.exports = {
     'json',
     'ts',
   ],
-  rootDir: 'test',
+  roots: ["<rootDir>/src/", "<rootDir>/test/"],
   testRegex: '.*\\.spec\\.ts$',
   transform: {
     '^.+\\.(t|j)s$': 'ts-jest',
   },
   collectCoverageFrom: [
-    '**/*.(t|j)s',
+    '**/*.ts',
   ],
-  coverageDirectory: '../coverage',
+  coverageDirectory: 'coverage',
   moduleNameMapper: {
-    '@src/(.*)$': '<rootDir>/../src/$1',
+    '@src/(.*)$': ['<rootDir>/../src/$1', '<rootDir>/src/$1'],
   },
   silent: true,
+  clearMocks: true,
 };
