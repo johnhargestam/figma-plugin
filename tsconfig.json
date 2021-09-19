@@ -7,11 +7,16 @@
       "./node_modules/@types",
       "./node_modules/@figma"
     ],
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
       "@src/*": ["./*"]
     }
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test"
+  ]
 }
