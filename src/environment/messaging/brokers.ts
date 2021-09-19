@@ -3,7 +3,7 @@ import { Message } from './messages';
 export interface MessageBroker {
   onMessage(callback: (msg: Message) => void): void;
 
-  sendMessage(message: Message): void;
+  sendMessage(msg: Message): void;
 }
 
 class UIMessageBroker implements MessageBroker {
@@ -22,24 +22,24 @@ class UIMessageBroker implements MessageBroker {
     };
   }
 
-  public sendMessage(message: Message): void {
-    this.parent.postMessage({ pluginMessage: message }, '*');
+  public sendMessage(msg: Message): void {
+    this.parent.postMessage({ pluginMessage: msg }, '*');
   }
 }
 
 class PluginMessageBroker implements MessageBroker {
-  private readonly figma: PluginAPI;
+  private readonly uiApi: UIAPI;
 
-  public constructor(figma: PluginAPI) {
-    this.figma = figma;
+  public constructor(uiApi: UIAPI) {
+    this.uiApi = uiApi;
   }
 
   public onMessage(callback: (msg: Message) => void): void {
-    this.figma.ui.onmessage = callback;
+    this.uiApi.onmessage = callback;
   }
 
-  public sendMessage(message: Message): void {
-    this.figma.ui.postMessage(message);
+  public sendMessage(msg: Message): void {
+    this.uiApi.postMessage(msg);
   }
 }
 
@@ -48,7 +48,7 @@ export class MessageBrokerFactory {
     return new UIMessageBroker(window, parent);
   }
 
-  public static createForPlugin(figma: PluginAPI): MessageBroker {
-    return new PluginMessageBroker(figma);
+  public static createForPlugin(uiApi: UIAPI): MessageBroker {
+    return new PluginMessageBroker(uiApi);
   }
 }

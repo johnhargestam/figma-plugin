@@ -3,6 +3,6 @@ import Plugin from './plugin/Plugin';
 
 figma.showUI(__html__);
 
-const messageBroker = MessageBrokerFactory.createForPlugin(figma);
+const messageBroker = MessageBrokerFactory.createForPlugin(figma.ui);
 const plugin = new Plugin(messageBroker);
 plugin.initialize();
