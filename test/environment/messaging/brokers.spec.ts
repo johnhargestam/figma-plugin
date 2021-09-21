@@ -1,10 +1,10 @@
 import { MessageBroker, MessageBrokerFactory } from '@src/environment/messaging/brokers';
 import { Message } from '@src/environment/messaging/messages';
-import { mock } from 'jest-mock-extended';
+import { mock, MockProxy } from 'jest-mock-extended';
 
 describe('UIMessageBroker', () => {
-  let windowMock: Window;
-  let parentMock: WindowProxy;
+  let windowMock: MockProxy<Window>;
+  let parentMock: MockProxy<WindowProxy>;
   let messageBroker: MessageBroker;
 
   beforeEach(() => {
