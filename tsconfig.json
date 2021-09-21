@@ -6,8 +6,8 @@
       "./node_modules/@types",
       "./node_modules/@figma"
     ],
+    "skipLibCheck": true,
     "baseUrl": ".",
-    "outDir": "build",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
