@@ -1,3 +1,7 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+
 module.exports = (_, argv) => ({
   mode: argv.mode === 'development' ? 'development' : 'production',
   devtool: argv.mode === 'development' ? 'inline-source-map' : false,
@@ -17,10 +21,19 @@ module.exports = (_, argv) => ({
         test: /\.ts$/, use: 'ts-loader',
       },
       {
-        test: /\.css$/, use: ['style-loader', 'css-loader'],
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              emit: false,
+            },
+          },
+          'css-loader',
+        ],
       },
       {
-        test: /\.json$/, type: 'asset/resource',
+        test: /\.pug$/, loader: 'pug-loader',
       }
     ],
   },
@@ -29,7 +42,22 @@ module.exports = (_, argv) => ({
   },
   output: {
     path: __dirname,
-    assetModuleFilename: 'dist/[name][ext]'
   },
-  plugins: [],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/ui.pug',
+      filename: './dist/ui.html',
+      chunks: ['ui'],
+      inject: false,
+      cache: false,
+    }),
+    new MiniCssExtractPlugin({
+      runtime: false,
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "./manifest.json", to: "./dist/" },
+      ],
+    })
+  ],
 });

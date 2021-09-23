@@ -1,4 +1,3 @@
-import './../manifest.json';
 import { MessageBrokerFactory } from './environment/messaging/brokers';
 import Plugin from './plugin/Plugin';
 

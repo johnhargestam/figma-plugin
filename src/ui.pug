@@ -1,6 +1,7 @@
 <h2>Bridge</h2>
 <button id="ping">Ping</button>
 <div id="response"></div>
-<script>
-include ../build/ui.js
-</script>
+each cssFile in htmlWebpackPlugin.files.css
+  style !{compilation.assets[cssFile.substr(htmlWebpackPlugin.files.publicPath.length)].source()}
+each jsFile in htmlWebpackPlugin.files.js
+  script !{compilation.assets[jsFile.substr(htmlWebpackPlugin.files.publicPath.length)].source()}
