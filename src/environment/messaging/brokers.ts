@@ -1,9 +1,9 @@
 import { Message } from './messages';
 
 export interface MessageBroker {
-  onMessage(callback: (msg: Message) => void): void;
+  onMessage: (callback: (msg: Message) => void) => void;
 
-  sendMessage(msg: Message): void;
+  sendMessage: (msg: Message) => void;
 }
 
 class UIMessageBroker implements MessageBroker {
@@ -43,12 +43,12 @@ class PluginMessageBroker implements MessageBroker {
   }
 }
 
-export class MessageBrokerFactory {
-  public static createForUI(window: Window, parent: WindowProxy): MessageBroker {
+export const MessageBrokerFactory = {
+  createForUI(window: Window, parent: WindowProxy): MessageBroker {
     return new UIMessageBroker(window, parent);
-  }
+  },
 
-  public static createForPlugin(uiApi: UIAPI): MessageBroker {
+  createForPlugin(uiApi: UIAPI): MessageBroker {
     return new PluginMessageBroker(uiApi);
   }
-}
+};

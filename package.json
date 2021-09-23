@@ -4,7 +4,6 @@
   "private": "true",
   "license": "UNLICENSED",
   "description": "Bridge Figma plugin",
-  "main": "code.js",
   "scripts": {
     "build": "webpack",
     "build:dev": "webpack --mode=development",
@@ -12,8 +11,8 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
   },
   "author": "johnhargestam",
   "dependencies": {

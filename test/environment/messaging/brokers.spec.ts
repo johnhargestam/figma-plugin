@@ -1,61 +1,53 @@
-import { MessageBroker, MessageBrokerFactory } from '@src/environment/messaging/brokers';
-import { Message } from '@src/environment/messaging/messages';
-import { mock, MockProxy } from 'jest-mock-extended';
+import { MessageBrokerFactory } from '@src/environment/messaging/brokers';
+import { mock } from 'jest-mock-extended';
 
-describe('UIMessageBroker', () => {
-  let windowMock: MockProxy<Window>;
-  let parentMock: MockProxy<WindowProxy>;
-  let messageBroker: MessageBroker;
-
-  beforeEach(() => {
-    windowMock = mock<Window>();
-    parentMock = mock<WindowProxy>();
-    messageBroker = MessageBrokerFactory.createForUI(windowMock, parentMock);
-  });
+describe('uIMessageBroker', () => {
 
   it('recieves messages from plugin', () => {
-    let actualContents;
-    messageBroker.onMessage((msg: Message): void => {
-      actualContents = msg.contents;
-    });
+    const windowMock = mock<Window>();
+    const parentMock = mock<WindowProxy>();
+    const callback = jest.fn();
+    const messageBroker = MessageBrokerFactory.createForUI(windowMock, parentMock);
 
-    const msg = { contents: 'plugin says hi' };
-    const event = { data: { pluginMessage: msg } } as MessageEvent;
+    messageBroker.onMessage(callback);
+
+    const event = { data: { pluginMessage: { contents: 'plugin says hi' } } } as MessageEvent;
     windowMock.onmessage!(event);
 
-    expect(actualContents).toBe('plugin says hi');
+    expect(callback).toHaveBeenCalledWith({ contents: 'plugin says hi' });
   });
 
   it('sends messages to plugin', () => {
-    messageBroker.sendMessage({contents: 'ui says hi'});
+    const windowMock = mock<Window>();
+    const parentMock = mock<WindowProxy>();
+    const messageBroker = MessageBrokerFactory.createForUI(windowMock, parentMock);
 
-    expect(parentMock.postMessage).toBeCalledWith({ pluginMessage: { contents: 'ui says hi'}}, '*');
+    messageBroker.sendMessage({ contents: 'ui says hi' });
+
+    expect(parentMock.postMessage).toHaveBeenCalledWith({ pluginMessage: { contents: 'ui says hi' } }, '*');
   });
 });
 
-describe('PluginMessageBroker', () => {
-  let uiApiMock: UIAPI;
-  let messageBroker: MessageBroker;
-
-  beforeEach(() => {
-    uiApiMock = mock<UIAPI>();
-    messageBroker = MessageBrokerFactory.createForPlugin(uiApiMock);
-  });
+describe('pluginMessageBroker', () => {
 
   it('recieves messages from ui', () => {
-    let actualContents;
-    messageBroker.onMessage((msg: Message): void => {
-      actualContents = msg.contents;
-    });
+    const uiApiMock = mock<UIAPI>();
+    const callback = jest.fn();
+    const messageBroker = MessageBrokerFactory.createForPlugin(uiApiMock);
 
-    uiApiMock.onmessage!({ contents: 'ui says hello' }, { origin: '*'});
+    messageBroker.onMessage(callback);
 
-    expect(actualContents).toBe('ui says hello');
+    uiApiMock.onmessage!({ contents: 'ui says hello' }, { origin: '*' });
+
+    expect(callback).toHaveBeenCalledWith({ contents: 'ui says hello' }, { origin: '*' });
   });
 
   it('sends messages to ui', () => {
-    messageBroker.sendMessage({contents: 'plugin says hello'});
+    const uiApiMock = mock<UIAPI>();
+    const messageBroker = MessageBrokerFactory.createForPlugin(uiApiMock);
 
-    expect(uiApiMock.postMessage).toBeCalledWith({ contents: 'plugin says hello'});
+    messageBroker.sendMessage({ contents: 'plugin says hello' });
+
+    expect(uiApiMock.postMessage).toHaveBeenCalledWith({ contents: 'plugin says hello' });
   });
 });
