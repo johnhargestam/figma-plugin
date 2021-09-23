@@ -2,10 +2,7 @@
   "compilerOptions": {
     "strict": true,
     "target": "es6",
-    "typeRoots": [
-      "./node_modules/@types",
-      "./node_modules/@figma"
-    ],
+    "typeRoots": ["./node_modules/@types", "./node_modules/@figma"],
     "skipLibCheck": true,
     "baseUrl": ".",
     "moduleResolution": "node",
@@ -13,5 +10,5 @@
     "paths": {
       "@src/*": ["./src/*"]
     }
-  },
+  }
 }

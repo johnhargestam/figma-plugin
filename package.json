@@ -8,11 +8,13 @@
     "build": "webpack",
     "build:dev": "webpack --mode=development",
     "build:watch": "webpack --mode=development --watch",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix"
+    "test:watch": "jest --watch"
   },
   "author": "johnhargestam",
   "dependencies": {

@@ -1,5 +1,5 @@
 import './ui.css';
-import { MessageBrokerFactory } from './environment/messaging/brokers';
+import {MessageBrokerFactory} from './environment/messaging/brokers';
 import UserInterface from './ui/UserInterface';
 import DocumentProxy from './environment/dom/DocumentProxy';
 

@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (_, argv) => ({
   mode: argv.mode === 'development' ? 'development' : 'production',
@@ -18,7 +18,8 @@ module.exports = (_, argv) => ({
   module: {
     rules: [
       {
-        test: /\.ts$/, use: 'ts-loader',
+        test: /\.ts$/,
+        use: 'ts-loader',
       },
       {
         test: /\.css$/,
@@ -33,8 +34,9 @@ module.exports = (_, argv) => ({
         ],
       },
       {
-        test: /\.pug$/, loader: 'pug-loader',
-      }
+        test: /\.pug$/,
+        loader: 'pug-loader',
+      },
     ],
   },
   resolve: {
@@ -55,9 +57,7 @@ module.exports = (_, argv) => ({
       runtime: false,
     }),
     new CopyWebpackPlugin({
-      patterns: [
-        { from: "./manifest.json", to: "./dist/" },
-      ],
-    })
+      patterns: [{from: './manifest.json', to: './dist/'}],
+    }),
   ],
 });

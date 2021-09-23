@@ -1,14 +1,11 @@
 import DocumentProxy from '@src/environment/dom/DocumentProxy';
-import { any, mock } from 'jest-mock-extended';
+import {any, mock} from 'jest-mock-extended';
 
 describe('documentProxy', () => {
-
   it('returns element if found', () => {
     const document = mock<Document>();
     const elementMock = mock<HTMLElement>();
-    document.getElementById
-      .calledWith(any())
-      .mockReturnValue(elementMock);
+    document.getElementById.calledWith(any()).mockReturnValue(elementMock);
 
     const documentProxy = new DocumentProxy(document);
     const element = documentProxy.getElementById('id');
@@ -19,9 +16,7 @@ describe('documentProxy', () => {
 
   it('throws error if element not found', () => {
     const document = mock<Document>();
-    document.getElementById
-      .calledWith(any())
-      .mockReturnValue(null);
+    document.getElementById.calledWith(any()).mockReturnValue(null);
 
     const documentProxy = new DocumentProxy(document);
 

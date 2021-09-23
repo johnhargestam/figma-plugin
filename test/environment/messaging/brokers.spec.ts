@@ -1,35 +1,35 @@
-import { MessageBrokerFactory } from '@src/environment/messaging/brokers';
-import { mock } from 'jest-mock-extended';
+import {MessageBrokerFactory} from '@src/environment/messaging/brokers';
+import {mock} from 'jest-mock-extended';
 
 describe('uIMessageBroker', () => {
-
   it('recieves messages from plugin', () => {
-    const windowMock = mock<Window>();
-    const parentMock = mock<WindowProxy>();
+    const window = mock<Window>();
+    const parent = mock<WindowProxy>();
     const callback = jest.fn();
-    const messageBroker = MessageBrokerFactory.createForUI(windowMock, parentMock);
+    const messageBroker = MessageBrokerFactory.createForUI(window, parent);
 
     messageBroker.onMessage(callback);
 
-    const event = { data: { pluginMessage: { contents: 'plugin says hi' } } } as MessageEvent;
-    windowMock.onmessage!(event);
+    const msg = {contents: 'plugin says hi'};
+    const event = {data: {pluginMessage: msg}} as MessageEvent;
+    window.onmessage!(event);
 
-    expect(callback).toHaveBeenCalledWith({ contents: 'plugin says hi' });
+    expect(callback).toHaveBeenCalledWith(msg);
   });
 
   it('sends messages to plugin', () => {
-    const windowMock = mock<Window>();
-    const parentMock = mock<WindowProxy>();
-    const messageBroker = MessageBrokerFactory.createForUI(windowMock, parentMock);
+    const window = mock<Window>();
+    const parent = mock<WindowProxy>();
+    const messageBroker = MessageBrokerFactory.createForUI(window, parent);
 
-    messageBroker.sendMessage({ contents: 'ui says hi' });
+    const msg = {contents: 'ui says hi'};
+    messageBroker.sendMessage(msg);
 
-    expect(parentMock.postMessage).toHaveBeenCalledWith({ pluginMessage: { contents: 'ui says hi' } }, '*');
+    expect(parent.postMessage).toHaveBeenCalledWith({pluginMessage: msg}, '*');
   });
 });
 
 describe('pluginMessageBroker', () => {
-
   it('recieves messages from ui', () => {
     const uiApiMock = mock<UIAPI>();
     const callback = jest.fn();
@@ -37,17 +37,19 @@ describe('pluginMessageBroker', () => {
 
     messageBroker.onMessage(callback);
 
-    uiApiMock.onmessage!({ contents: 'ui says hello' }, { origin: '*' });
+    const msg = {contents: 'ui says hello'};
+    uiApiMock.onmessage!(msg, {origin: '*'});
 
-    expect(callback).toHaveBeenCalledWith({ contents: 'ui says hello' }, { origin: '*' });
+    expect(callback).toHaveBeenCalledWith(msg, {origin: '*'});
   });
 
   it('sends messages to ui', () => {
     const uiApiMock = mock<UIAPI>();
     const messageBroker = MessageBrokerFactory.createForPlugin(uiApiMock);
 
-    messageBroker.sendMessage({ contents: 'plugin says hello' });
+    const msg = {contents: 'plugin says hello'};
+    messageBroker.sendMessage({contents: 'plugin says hello'});
 
-    expect(uiApiMock.postMessage).toHaveBeenCalledWith({ contents: 'plugin says hello' });
+    expect(uiApiMock.postMessage).toHaveBeenCalledWith(msg);
   });
 });

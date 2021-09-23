@@ -1,9 +1,13 @@
-import { Message } from './messages';
+import {Message} from './messages';
 
 export interface MessageBroker {
   onMessage: (callback: (msg: Message) => void) => void;
 
   sendMessage: (msg: Message) => void;
+}
+
+interface FigmaMessage {
+  pluginMessage: Message;
 }
 
 class UIMessageBroker implements MessageBroker {
@@ -17,13 +21,13 @@ class UIMessageBroker implements MessageBroker {
   }
 
   public onMessage(callback: (msg: Message) => void): void {
-    this.window.onmessage = (ev: MessageEvent<{ pluginMessage: Message }>): void => {
+    this.window.onmessage = (ev: MessageEvent<FigmaMessage>): void => {
       callback(ev.data.pluginMessage);
     };
   }
 
   public sendMessage(msg: Message): void {
-    this.parent.postMessage({ pluginMessage: msg }, '*');
+    this.parent.postMessage({pluginMessage: msg}, '*');
   }
 }
 
@@ -50,5 +54,5 @@ export const MessageBrokerFactory = {
 
   createForPlugin(uiApi: UIAPI): MessageBroker {
     return new PluginMessageBroker(uiApi);
-  }
+  },
 };

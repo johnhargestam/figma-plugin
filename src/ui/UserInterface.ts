@@ -1,6 +1,6 @@
 import DocumentProxy from '@src/environment/dom/DocumentProxy';
-import { MessageBroker } from '@src/environment/messaging/brokers';
-import { Message } from '@src/environment/messaging/messages';
+import {MessageBroker} from '@src/environment/messaging/brokers';
+import {Message} from '@src/environment/messaging/messages';
 
 export default class UserInterface {
   private readonly messageBroker: MessageBroker;
@@ -14,7 +14,7 @@ export default class UserInterface {
 
   public initialize(): void {
     this.document.getElementById('ping').onclick = (): void => {
-      this.messageBroker.sendMessage({ contents: 'ping' });
+      this.messageBroker.sendMessage({contents: 'ping'});
     };
 
     const div = this.document.getElementById('response');

@@ -1,5 +1,5 @@
-import { MessageBroker } from '@src/environment/messaging/brokers';
-import { Message } from '@src/environment/messaging/messages';
+import {MessageBroker} from '@src/environment/messaging/brokers';
+import {Message} from '@src/environment/messaging/messages';
 
 export default class Plugin {
   private readonly messageBroker: MessageBroker;
@@ -10,7 +10,7 @@ export default class Plugin {
 
   public initialize(): void {
     this.messageBroker.onMessage((msg: Message): void => {
-      this.messageBroker.sendMessage({ contents: `${msg.contents} pong` });
+      this.messageBroker.sendMessage({contents: `${msg.contents} pong`});
     });
   }
 }
