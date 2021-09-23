@@ -93,6 +93,17 @@ jobs:
           path: ./node_modules
           key: ${{ runner.os }}-node_modules-dev-${{ hashFiles('**/yarn.lock') }}
       - run: yarn lint
+  format:
+    needs: 'install-dev'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Retrieve node_modules
+        uses: actions/cache@v2
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node_modules-dev-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn format
   test:
     needs: 'install-dev'
     runs-on: ubuntu-latest
