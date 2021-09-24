@@ -1,5 +1,5 @@
-import {MessageBrokerFactory} from './environment/messaging/brokers';
-import Plugin from './plugin/Plugin';
+import {MessageBrokerFactory} from '../shared/messaging/brokers';
+import Plugin from './Plugin';
 
 figma.showUI(__html__);
 

@@ -2,8 +2,7 @@
 
 ### Todo
 
-- [ ] minimize css
-- [ ] fix lint (pretty plugin + explicit rules?)
 - [ ] mock figma environment for UAT?
 - [ ] add vue or react
+- [ ] minimize css
 - [ ] start on the actual project??

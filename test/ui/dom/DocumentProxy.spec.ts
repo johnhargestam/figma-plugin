@@ -1,4 +1,4 @@
-import DocumentProxy from '@src/environment/dom/DocumentProxy';
+import DocumentProxy from '@ui/dom/DocumentProxy';
 import {any, mock} from 'jest-mock-extended';
 
 describe('documentProxy', () => {

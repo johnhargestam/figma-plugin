@@ -1,7 +1,7 @@
-import './ui.css';
-import {MessageBrokerFactory} from './environment/messaging/brokers';
-import UserInterface from './ui/UserInterface';
-import DocumentProxy from './environment/dom/DocumentProxy';
+import '@assets/ui.css';
+import {MessageBrokerFactory} from '@shared/messaging/brokers';
+import UserInterface from './UserInterface';
+import DocumentProxy from './dom/DocumentProxy';
 
 declare const parent: WindowProxy;
 

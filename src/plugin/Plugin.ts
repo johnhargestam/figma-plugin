@@ -1,5 +1,5 @@
-import {MessageBroker} from '@src/environment/messaging/brokers';
-import {Message} from '@src/environment/messaging/messages';
+import {MessageBroker} from '@shared/messaging/brokers';
+import {Message} from '@shared/messaging/messages';
 
 export default class Plugin {
   private readonly messageBroker: MessageBroker;

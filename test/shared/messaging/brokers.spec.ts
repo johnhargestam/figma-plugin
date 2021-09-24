@@ -1,4 +1,4 @@
-import {MessageBrokerFactory} from '@src/environment/messaging/brokers';
+import {MessageBrokerFactory} from '@shared/messaging/brokers';
 import {mock} from 'jest-mock-extended';
 
 describe('uIMessageBroker', () => {

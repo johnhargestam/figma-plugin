@@ -8,7 +8,9 @@ module.exports = {
   collectCoverageFrom: ['**/*.ts'],
   coverageDirectory: 'coverage',
   moduleNameMapper: {
-    '@src/(.*)$': ['<rootDir>/../src/$1', '<rootDir>/src/$1'],
+    '@plugin/(.*)$': ['<rootDir>/src/plugin/$1'],
+    '@shared/(.*)$': ['<rootDir>/src/shared/$1'],
+    '@ui/(.*)$': ['<rootDir>/src/ui/$1'],
   },
   silent: true,
   clearMocks: true,

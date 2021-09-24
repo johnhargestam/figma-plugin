@@ -1,6 +1,6 @@
-import DocumentProxy from '@src/environment/dom/DocumentProxy';
-import {MessageBroker} from '@src/environment/messaging/brokers';
-import {Message} from '@src/environment/messaging/messages';
+import DocumentProxy from './dom/DocumentProxy';
+import {MessageBroker} from '@shared/messaging/brokers';
+import {Message} from '@shared/messaging/messages';
 
 export default class UserInterface {
   private readonly messageBroker: MessageBroker;
