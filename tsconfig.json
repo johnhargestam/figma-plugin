@@ -16,7 +16,7 @@
   "references": [
     {"path": "./src/plugin"},
     {"path": "./src/shared"},
-    {"path": "./src/ui"}
-  ],
-  "exclude": ["test"]
+    {"path": "./src/ui"},
+    {"path": "./test/"}
+  ]
 }
