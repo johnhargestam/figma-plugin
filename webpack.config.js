@@ -1,14 +1,17 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+
 const path = require('path');
 
 module.exports = (_, argv) => ({
   mode: argv.mode === 'development' ? 'development' : 'production',
   devtool: argv.mode === 'development' ? 'inline-source-map' : false,
+  context: __dirname,
   entry: {
     ui: {
-      import: './src/ui/main.ts',
+      import: './src/ui/index.ts',
       filename: 'build/[name].js',
     },
     plugin: {
@@ -20,7 +23,15 @@ module.exports = (_, argv) => ({
     rules: [
       {
         test: /\.ts$/,
-        use: 'ts-loader',
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              projectReferences: true,
+              transpileOnly: true,
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
@@ -64,5 +75,11 @@ module.exports = (_, argv) => ({
     new CopyWebpackPlugin({
       patterns: [{from: './assets/manifest.json', to: './dist/'}],
     }),
+    new ForkTsCheckerWebpackPlugin({
+      async: true,
+      typescript: {
+        vue: true,
+      },
+    })
   ],
 });
