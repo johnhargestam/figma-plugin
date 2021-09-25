@@ -48,7 +48,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.ts'],
+    extensions: ['.ts', '.js'],
     alias: {
       '@assets': path.resolve(__dirname, 'assets/'),
       '@shared': path.resolve(__dirname, 'src/shared/'),
@@ -59,8 +59,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './assets/ui.pug',
-      filename: './dist/ui.html',
+      template: './assets/index.pug',
+      filename: './dist/index.html',
       chunks: ['ui'],
       inject: false,
       cache: false,

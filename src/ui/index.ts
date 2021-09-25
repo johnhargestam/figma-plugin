@@ -1,4 +1,4 @@
-import '@assets/ui.css';
+import '@assets/styles.css';
 import {MessageBrokerFactory} from '@shared/messaging/brokers';
 import UserInterface from './UserInterface';
 import DocumentProxy from './dom/DocumentProxy';
