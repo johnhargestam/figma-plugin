@@ -1,7 +1,7 @@
 import {MessageBroker} from '@shared/messaging/brokers';
 import {Message} from '@shared/messaging/messages';
 
-export default class Plugin {
+export default class FigmaPlugin {
   private readonly messageBroker: MessageBroker;
 
   public constructor(messageBroker: MessageBroker) {

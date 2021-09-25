@@ -3,7 +3,12 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "tsconfigRootDir": "./",
-    "project": ["./tsconfig.json"]
+    "project": [
+      "./src/ui/tsconfig.json",
+      "./src/shared/tsconfig.json",
+      "./src/plugin/tsconfig.json",
+      "./test/tsconfig.json"
+    ]
   },
   "plugins": ["@typescript-eslint", "eslint-plugin-jest"],
   "rules": {
