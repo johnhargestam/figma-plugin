@@ -45,7 +45,7 @@ jobs:
           path: ./dist
       - name: Build for development
         if: steps.dist-cache.outputs.cache-hit != 'true'
-        run: yarn build:dev
+        run: yarn build
   install-dev:
     runs-on: ubuntu-latest
     steps:
@@ -82,17 +82,6 @@ jobs:
       - name: Build for development
         if: steps.dist-dev-cache.outputs.cache-hit != 'true'
         run: yarn build:dev
-  lint:
-    needs: 'install-dev'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Retrieve node_modules
-        uses: actions/cache@v2
-        with:
-          path: ./node_modules
-          key: ${{ runner.os }}-node_modules-dev-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn lint
   format:
     needs: 'install-dev'
     runs-on: ubuntu-latest
@@ -115,3 +104,4 @@ jobs:
           path: ./node_modules
           key: ${{ runner.os }}-node_modules-dev-${{ hashFiles('**/yarn.lock') }}
       - run: yarn test
+      - run: yarn test:lint
