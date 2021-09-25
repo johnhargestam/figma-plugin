@@ -12,5 +12,11 @@
       "@shared/*": ["./src/shared/*"],
       "@ui/*": ["./src/ui/*"]
     }
-  }
+  },
+  "references": [
+    {"path": "./src/plugin"},
+    {"path": "./src/shared"},
+    {"path": "./src/ui"}
+  ],
+  "exclude": ["test"]
 }

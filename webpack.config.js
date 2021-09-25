@@ -78,8 +78,9 @@ module.exports = (_, argv) => ({
     new ForkTsCheckerWebpackPlugin({
       async: true,
       typescript: {
+        build: true,
         vue: true,
       },
-    })
+    }),
   ],
 });
