@@ -5,6 +5,11 @@ module.exports = {
   transform: {
     '^.+\\.(t|j)s$': 'ts-jest',
   },
+  globals: {
+    'ts-jest': {
+      tsconfig: './test/tsconfig.json',
+    },
+  },
   collectCoverageFrom: ['**/*.ts'],
   coverageDirectory: 'coverage',
   moduleNameMapper: {
