@@ -4,16 +4,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
+  mode: 'development',
+  devtool: 'inline-source-map',
   context: __dirname,
   entry: {
-    ui: {
-      import: './src/ui/index.ts',
-      filename: 'build/[name].js',
-    },
-    plugin: {
-      import: './src/plugin/main.ts',
-      filename: 'dist/[name].js',
-    },
+    ui: './src/ui/index.ts',
+    plugin: './src/plugin/main.ts',
   },
   module: {
     rules: [
@@ -47,22 +43,22 @@ module.exports = {
     },
   },
   output: {
-    path: __dirname,
+    path: path.resolve(__dirname, 'dist/'),
+    filename: '[name].js',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './assets/index.pug',
-      filename: './dist/index.html',
-      chunks: ['ui'],
+      template: './mock/index.pug',
+      filename: 'index.html',
       inject: false,
       cache: false,
     }),
     new MiniCssExtractPlugin({
-      filename: './build/[name].css',
+      filename: '[name].css',
       runtime: false,
     }),
     new CopyWebpackPlugin({
-      patterns: [{from: './assets/manifest.json', to: './dist/'}],
+      patterns: [{from: './assets/manifest.json', to: './'}],
     }),
   ],
 };

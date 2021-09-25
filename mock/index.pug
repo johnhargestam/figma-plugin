@@ -10,4 +10,6 @@ html
     h2= 'Bridge'
     button(id='ping')= 'Ping'
     div(id='response')
-    script !{contents(js(/ui\.js$/))}
+    script !{contents(js(/plugin\.js$/))}
+    iframe
+      script !{contents(js(/ui\.js$/))}
