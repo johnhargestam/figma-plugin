@@ -3,8 +3,9 @@
 const iframe = document.getElementById('iframe');
 
 iframe.contentWindow.postMessage = (ev) => {
-  if (ev.data && ev.data.pluginMessage) {
-    iframe.contentWindow.onmessage(ev);
+  const payload = ev.message || ev;
+  if (payload.data && payload.data.pluginMessage) {
+    iframe.contentWindow.onmessage(payload);
   }
 };
 
@@ -27,7 +28,8 @@ figma = {
 };
 
 postMessage = (ev) => {
-  if (ev.pluginMessage) {
-    figma.ui.onmessage(ev.pluginMessage);
+  const payload = ev.message || ev;
+  if (payload.pluginMessage) {
+    figma.ui.onmessage(payload.pluginMessage);
   }
 };

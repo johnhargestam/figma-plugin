@@ -12,6 +12,7 @@
     "format:fix": "prettier --write .",
     "serve:mock": "webpack serve --config webpack.mock.js",
     "test": "jest",
+    "test:uat": "testcafe firefox ./test/uat/temp.uat.ts",
     "test:coverage": "jest --coverage",
     "test:lint": "eslint ./test/ --ext .ts",
     "test:watch": "jest --watch"
