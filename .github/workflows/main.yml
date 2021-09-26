@@ -115,4 +115,4 @@ jobs:
         with:
           path: ./node_modules
           key: ${{ runner.os }}-node_modules-dev-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn test:uat
+      - run: yarn test:uat "firefox:headless"
