@@ -47,6 +47,7 @@ module.exports = {
     },
   },
   output: {
+    publicPath: '',
     path: __dirname,
   },
   plugins: [

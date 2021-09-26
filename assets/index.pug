@@ -7,7 +7,7 @@ html
     each cssFile in htmlWebpackPlugin.files.css
       style !{contents(cssFile)}
   body
-    h2= 'Bridge'
-    button(id='ping')= 'Ping'
+    h2='Bridge'
+    button(id='ping')='Ping'
     div(id='response')
     script !{contents(js(/ui\.js$/))}

@@ -3,13 +3,7 @@
 - contents = path => compilation.assets[strip(path)].source()
 
 html
-  head
-    each cssFile in htmlWebpackPlugin.files.css
-      style !{contents(cssFile)}
   body
-    h2= 'Bridge'
-    button(id='ping')= 'Ping'
-    div(id='response')
+    iframe(id='iframe' src='./ui.html' style='display:none;')
+    script !{contents(js(/shim\.js$/))}
     script !{contents(js(/plugin\.js$/))}
-    iframe
-      script !{contents(js(/ui\.js$/))}

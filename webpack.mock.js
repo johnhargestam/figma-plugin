@@ -1,64 +1,33 @@
+const common = require('./webpack.common.js');
+const {merge} = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
-module.exports = {
+module.exports = merge(common, {
   mode: 'development',
-  devtool: 'inline-source-map',
-  context: __dirname,
+  devtool: 'eval',
   entry: {
     ui: './src/ui/index.ts',
     plugin: './src/plugin/main.ts',
-  },
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        use: [
-          {
-            loader: 'ts-loader',
-            options: {
-              projectReferences: true,
-              transpileOnly: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
-      },
-      {
-        test: /\.pug$/,
-        loader: 'pug-loader',
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['.ts', '.js'],
-    alias: {
-      '@assets': path.resolve(__dirname, 'assets/'),
-      '@shared': path.resolve(__dirname, 'src/shared/'),
-    },
+    shim: './mock/shim.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist/'),
-    filename: '[name].js',
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './mock/index.pug',
-      filename: 'index.html',
-      inject: false,
-      cache: false,
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      runtime: false,
-    }),
-    new CopyWebpackPlugin({
-      patterns: [{from: './assets/manifest.json', to: './'}],
-    }),
-  ],
-};
+});
+
+module.exports.plugins = [
+  new HtmlWebpackPlugin({
+    template: './mock/index.pug',
+    filename: 'index.html',
+    inject: false,
+    cache: false,
+  }),
+  new HtmlWebpackPlugin({
+    template: './assets/index.pug',
+    filename: 'ui.html',
+    inject: false,
+    cache: false,
+  }),
+  ...common.plugins.slice(1),
+];
