@@ -1,0 +1,6 @@
+{
+  "browsers": "firefox",
+  "src": ["./test/uat/"],
+  "appCommand": "yarn serve:mock",
+  "appInitdDelay": 3000
+}

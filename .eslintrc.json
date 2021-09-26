@@ -186,7 +186,7 @@
   "overrides": [
     {
       "files": ["*.ts"],
-      "excludedFiles": "*.spec.ts",
+      "excludedFiles": ["*.spec.ts", "*.uat.ts"],
       "rules": {
         "@typescript-eslint/adjacent-overload-signatures": "error",
         "@typescript-eslint/array-type": "error",
@@ -341,6 +341,13 @@
         "jest/valid-describe": "error",
         "jest/valid-expect": "error",
         "jest/valid-title": "error"
+      }
+    },
+    {
+      "files": ["*.uat.ts"],
+      "rules": {
+        "id-length": "off",
+        "new-cap": "off"
       }
     }
   ]
