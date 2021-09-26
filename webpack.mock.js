@@ -6,6 +6,9 @@ const path = require('path');
 module.exports = merge(common, {
   mode: 'development',
   devtool: 'eval',
+  devServer: {
+    port: 9000,
+  },
   entry: {
     ui: './src/ui/index.ts',
     plugin: './src/plugin/main.ts',

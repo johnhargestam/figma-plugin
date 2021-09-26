@@ -1,8 +1,8 @@
 import {Selector, test} from 'testcafe';
 
-fixture`Temporary test`.page`http://localhost:8080/`;
+fixture`messaging`.page`http://localhost:9000/`;
 
-test('My first test', async (t) => {
+test('ping pong', async (t) => {
   await t
     .switchToIframe('#iframe')
     .click('#ping')

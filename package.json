@@ -14,6 +14,7 @@
     "test": "jest",
     "test:uat": "testcafe firefox ./test/uat/temp.uat.ts",
     "test:coverage": "jest --coverage",
+    "test:headless": "testcafe \"firefox:headless\" ./test/uat/messaging.uat.ts",
     "test:lint": "eslint ./test/ --ext .ts",
     "test:watch": "jest --watch"
   },
